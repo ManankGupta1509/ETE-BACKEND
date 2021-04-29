@@ -70,6 +70,7 @@ public class dataListControler {
     public String getProduct(Model model, @RequestParam(name = "keyword") String keyword) {
         ArrayList<dataList> listdata = this.datalistservices.getsearchdata(keyword);
         model.addAttribute("datalist", listdata);
+        model.addAttribute("keyword",keyword);
         getdata(model,listdata);
         return "index";
     }

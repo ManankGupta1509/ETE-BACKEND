@@ -26,10 +26,15 @@ public class dataListRepository {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction= entityManager.getTransaction();
         try{
+            ArrayList<dataList> re=getData();
+            if(re.contains(newPost)) {
+                throw new Exception();
+            }
+            else{
             transaction.begin();
             entityManager.persist(newPost);
             transaction.commit();
-        }
+        }}
         catch(Exception e){
             System.out.println(e);
             transaction.rollback();
