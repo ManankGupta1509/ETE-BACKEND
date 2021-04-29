@@ -18,6 +18,7 @@ public class dataListRepository {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         TypedQuery<dataList> query=entityManager.createQuery("SELECT d from dataList d",dataList.class);
         ArrayList<dataList> result = (ArrayList<dataList>)query.getResultList();
+        System.out.println(result);
         return result;
     }
 
@@ -70,8 +71,9 @@ public class dataListRepository {
 
     public ArrayList<dataList> search(String keyword) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        TypedQuery<dataList> query=entityManager.createQuery("SELECT d from dataList d where d.fullName like : keyword",dataList.class).setParameter("keyword",keyword);
+        TypedQuery<dataList> query=entityManager.createQuery("SELECT d from dataList d where d.fullName=:keyword",dataList.class).setParameter("keyword",keyword);
         ArrayList<dataList> result = (ArrayList<dataList>)query.getResultList();
+        System.out.println(result);
         return result;
     }
 }

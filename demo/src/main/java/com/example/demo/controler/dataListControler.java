@@ -2,6 +2,7 @@ package com.example.demo.controler;
 
 import com.example.demo.model.dataList;
 import com.example.demo.services.dataListServices;
+import javassist.compiler.ast.Keyword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -25,10 +26,16 @@ public class dataListControler {
 
 
     @RequestMapping(method = RequestMethod.GET,value = "/index")
-    public ArrayList<dataList> getdata(Model model){
-        ArrayList<dataList> data=datalistservices.getdata();
-        model.addAttribute("datalist",data);
-                return data;
+    public ArrayList<dataList> getdata(Model model,ArrayList<dataList> listdata){
+        if(listdata.isEmpty()) {
+            ArrayList<dataList> data = datalistservices.getdata();
+
+            model.addAttribute("datalist", data);
+
+            return data;
+        }
+        else
+            return listdata;
     }
 
     @RequestMapping(method = RequestMethod.GET,value = "/creates")
@@ -60,9 +67,10 @@ public class dataListControler {
         return "redirect:/index";
     }
     @GetMapping("/search")
-    public String getProduct(Model model, @ModelAttribute("myFormObject") dataList myFormObject, BindingResult result) {
-        ArrayList<dataList> listdata = this.datalistservices.getsearchdata(myFormObject.getFullName());
+    public String getProduct(Model model, @RequestParam(name = "keyword") String keyword) {
+        ArrayList<dataList> listdata = this.datalistservices.getsearchdata(keyword);
         model.addAttribute("datalist", listdata);
-        return "redirect:/index";
+        getdata(model,listdata);
+        return "index";
     }
 }
