@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:fragment="site-head">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>User Details Information</title>
+</head>
+
+<body style="background-color: aquamarine">
+    <header th:fragment="logged-out" th:remove="tag" >
+        <header align="center" style="overflow: hidden;background-color: black;padding: 7px 6px;border-radius: 5px">
+            <i class="material-icons" style="font-size:36px;color: white;float:left;">book</i>
+            <h2 style="color: white;float:left;">User-Info</h2>
+            <a href="index.html" th:href="@{/index}"  style="float: right; color: white; text-decoration: none; text-align: center; padding: 6px; cursor: pointer;"><h3>User-Data</h3></a>
+            <a href="create.html" th:href="@{/creates}"  style="float: right; color: white;text-decoration: none;  text-align: center; padding: 6px; cursor: pointer;"><h3>Register-User</h3></a>
+        </header>
+    </header>
+    <br><br>
+    <div align="center"><h1 style="color: purple" align="center">Welcome To The User Information Registration Page</h1>
+        <span align="center"> <i class="material-icons" style="font-size:520px;color: purple; text-align: center;" align="center">book</i></span>
+    </div>
+
+</body>
+
+</html>
